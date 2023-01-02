@@ -1,0 +1,225 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="end">
+			
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none" [hidden]="!scanActive" style="padding-bottom: 15px;">
+    <div class="main">
+      <ion-icon name="scan"></ion-icon>
+    </div>
+    <ion-label>
+      <ion-title>Escaner</ion-title>
+    </ion-label>
+  </ion-item>
+
+	<ion-item lines="none" [hidden]="scanActive">
+		<ion-thumbnail>
+      <img alt="" src="{{ fotoUrl }}"/>
+    </ion-thumbnail>
+			<ion-label>
+        <h2>{{ nombre }}</h2>
+        <h2> {{ clave }}</h2>
+        <h2>Rol: {{ rol }}</h2>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+
+<ion-content [ngStyle]="{'--background': scanActive ? 'none' : 'linear-gradient(90deg, rgb(230, 218, 113) 0%, rgb(221, 213, 98) 35%, rgb(247, 238, 119) 100%)'}">
+  <div class="slides ion-margin-bottom" [hidden]="scanActive">
+    <ion-slides [options]="sliderConfig" *appHasRole="['vigilancia', 'admin', 'seguridad']">
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <div class="main">
+              <img src="./assets/icon/cebada_icon.png">
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-text-left">
+            <ion-card-title class="ion-margin-bottom">Nuevo registro de descarga de cebada.</ion-card-title>
+            <ion-button class="btn-main" (click)="nuevaEntrada('CEBADA')">Registrar</ion-button>
+            <ion-progress-bar value="1" color="warning"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <div class="main">
+              <img src="./assets/icon/malta_icon.png">
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-text-left">
+            <ion-card-title class="ion-margin-bottom">Nuevo registro de carga de malta.</ion-card-title>
+            <ion-button class="btn-main" (click)="nuevaEntrada('MALTA')">Registrar</ion-button>
+            <ion-progress-bar value="1" color="warning"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <div class="main">
+              <img src="./assets/icon/coproducto_icon.png">
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-text-left">
+            <ion-card-title class="ion-margin-bottom">Nuevo registro de carga de coproducto.</ion-card-title>
+            <ion-button class="btn-main" (click)="nuevaEntrada('COPRODUCTO')">Registrar</ion-button>
+            <ion-progress-bar value="1" color="warning"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+    </ion-slides>
+  </div>
+<!-- 
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Seleccionar folio</ion-title>
+          <ion-progress-bar [value]="captureProgress"></ion-progress-bar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-grid>
+          <ion-row>
+            
+          </ion-row>
+          <ion-row>
+            <div style="width: 100%; text-align:right;">
+              <ion-button (click)="cropImage()" *ngIf="myImage" color="dark" fill="clear">
+                <ion-icon slot="icon-only" name="checkmark" size="large"></ion-icon> Recortar
+              </ion-button>
+            </div>       
+          </ion-row>
+          <ion-row>
+            <image-cropper
+              #cropper
+              [imageBase64]="myImage"
+              [maintainAspectRatio]="false"
+              [aspectRatio]="4 / 3"
+              format="png"
+              [cropper]="inital"
+              [transform]="transform"
+              [autoCrop]="false"
+              (imageCropped)="imageCropped($event)"
+              (loadImageFailed)="loadImageFailed()"
+              (imageLoaded)="imageLoaded()"
+            ></image-cropper>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->
+
+  <div class="container scanner-hide">
+    <div id="acciones">
+      <ion-item lines="none">
+        <ion-grid>
+          <h3>Registrar movimiento de choféres una vez estando dentro de planta</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="scan"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Registre los diferentes movimientos del chofer durante su recorrido en planta.</h6>
+              </ion-row>
+              <ion-row>
+                <ion-button class="btn-main" expand="block" (click)="openRutas()">Registrar</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-grid>
+          <h3>Consultar y modificar estatus de choferes</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="eye"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Puede consultar la información de los choferes, asi como modificar su estatus.</h6>
+              </ion-row>
+              <ion-row>
+                <ion-button class="btn-main" expand="block" (click)="openListChoferes()">Consultar</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item lines="none" *appHasRole="['admin', 'logistica', 'seguridad']">
+        <ion-grid>
+          <h3>Definir los documentos que debe subir el chófer</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="document"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Puede agregar o eliminar que documentos o información debe subir el chófer al momento de su registro.</h6>
+              </ion-row>
+              <ion-row>
+                <ion-button class="btn-main" expand="block" (click)="openModificarDocs()">Acceder</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item lines="none" *appHasRole="['admin']">
+        <ion-grid>
+          <h3>Agregar nuevos usuario</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="person-add"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Puede agregar nuevos usuarios al sistema, estos usuarios pueden ser del área de seguridad, vigilancia o logística.</h6>
+              </ion-row>
+              <ion-row>
+                <ion-button class="btn-main" expand="block" (click)="openAgregarUsuario()">Acceder</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </div>
+
+  <!-- Vista o contenido para el escaneo -->
+  <div class="scanner-ui">
+    <ion-row class="scanner-buttons" [hidden]="!scanActive">
+      <ion-col class="ion-no-padding">
+        <ion-button shape="round" class="btn-main" (click)="stopScan()">Detener</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <div class="scanner-box" [hidden]="!scanActive">
+
+    </div>
+  </div>
+  
+</ion-content>

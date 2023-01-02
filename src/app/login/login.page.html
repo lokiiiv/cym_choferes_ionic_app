@@ -1,0 +1,73 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <div class="container-login">
+          <ion-card>
+            <form [formGroup]="form">
+              <ion-grid>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <h3>Gestión de ingreso de choferes</h3>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <div class="ion-text-center" style="padding: 10px;">
+                      <ion-img width="180" height="50px" src="./assets/image/logo.png"></ion-img>  
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="ion-text-center" style="padding: 10px; width: 150px;">
+                      <ion-img src="./assets/image/cym_logo.png"></ion-img>  
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-text>
+                      <h3>Iniciar sesión</h3>
+                      <p>Escribe tu clave de usuario y contraseña para acceder.</p>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label position="floating">Ingrese su clave de usuario</ion-label>
+                                <ion-input type="text" formControlName="clave"></ion-input>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('clave').touched && form.get('clave').errors?.required || form.get('clave').errors?.noWriteSpace" style="margin-left: 20px; margin-bottom: 20px;">Se requiere la clave de usuario.</ion-label>
+
+                            <br />
+                            <ion-item>
+                              <ion-label position="floating">Ingrese su contraseña</ion-label>
+                              <ion-input type="password" formControlName="password"></ion-input>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('password').touched && form.get('password').errors?.required || form.get('password').errors?.noWriteSpace" style="margin-left: 20px; margin-bottom: 20px;">Se requiere la contraseña</ion-label>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button type="submit" fill="solid" [disabled]="!form.valid" (click)="login()">Confirmar</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label>
+                          <a class="regStr" [routerLink]="['/register']">Registrarse</a>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+  

@@ -1,0 +1,7 @@
+{
+  "name": "GestionIngresoChoferesFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border header-main">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button routerLink="/admin-tabs"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none" [hidden]="scanActive" style="padding-bottom: 15px;">
+      <div class="main">
+        <ion-icon name="car"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Recorridos de choferes</h1>
+			</ion-label>
+      
+	</ion-item>
+
+  <ion-item lines="none" [hidden]="!scanActive" style="padding-bottom: 15px;">
+    <div class="main">
+      <ion-icon name="scan"></ion-icon>
+    </div>
+    <ion-label>
+      <ion-title>Registrar asistencia</ion-title>
+    </ion-label>
+  </ion-item>
+
+  <ion-searchbar placeholder="Busque por folio o nombre" animated  [hidden]="scanActive" (ionChange)="searchRuta($event)" ></ion-searchbar>
+</ion-header>
+
+<ion-content class="main" [ngStyle]="{'--background': scanActive ? 'none' : 'linear-gradient(90deg, rgb(230, 218, 113) 0%, rgb(221, 213, 98) 35%, rgb(247, 238, 119) 100%)'}">
+  <div class="slides ion-margin-bottom" [hidden]="scanActive">
+   
+  </div>
+  <div class="container scanner-hide">
+    <ion-refresher slot="fixed" (ionRefresh)="actualizarRutas($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
+    <p>Arrastre hacia abajo para actualizar el contenido.</p>
+
+    <ion-item lines="none" *ngFor="let item of searchedRutas">
+      <ion-grid>
+        <ion-row  class="ion-align-items-center">
+          <ion-text>
+            <h6>Chofer: {{ item.nombre }}</h6>
+            <h6>Folio: {{ item.folio }} </h6>
+            <h6>Para: {{ item.para }} </h6>
+            <h6>Entró el: {{ item.date_created }} </h6>
+          </ion-text>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <ion-button class="btn-main" (click)="registrarAsistencia(item.idRoute, item.para, item.nombre, item.folio)">Registrar asistencia</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+
+  <!-- Vista o contenido para el escaneo -->
+  <div class="scanner-ui">
+    <ion-row class="scanner-buttons" [hidden]="!scanActive">
+      <ion-col class="ion-no-padding">
+        <ion-button shape="round" class="btn-main" (click)="stopScan()">Detener</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <div class="scanner-box" [hidden]="!scanActive">
+
+    </div>
+  </div>
+
+</ion-content>

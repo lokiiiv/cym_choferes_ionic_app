@@ -1,0 +1,102 @@
+<ion-header class="ion-no-border header-main">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button routerLink="/admin-tabs"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none" style="padding-bottom: 15px;">
+      <div class="main">
+        <ion-icon name="document"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Documentación</h1>
+			</ion-label>
+      
+	</ion-item>
+  
+</ion-header>
+
+<ion-content class="main">
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-button class="btn-icon" (click)="nuevoDocumento()">Nuevo documento</ion-button>
+    <ion-item lines="none" *ngFor="let doc of documentos">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="7">
+            <h6>{{ doc.nombre }}</h6>
+            <h6 *ngIf="doc.tipo == 'file'">Tipo: Archivo</h6>
+            <h6 *ngIf="doc.tipo == 'date'">Tipo: Fecha</h6>
+            <h6 *ngIf="doc.tipo == 'text'">Tipo: Texto en general</h6>
+          </ion-col>
+          <ion-col size="3">
+            <ion-row>
+              <ion-button class="btn-icon" (click)="eliminarDoc(doc.idDocs)">Eliminar</ion-button>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header class="header-modal" no-border>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      
+        <ion-item lines="none">
+            <div class="main">
+              <ion-icon name="information-circle"></ion-icon>
+            </div>
+            <ion-label>
+              <ion-title>Nuevo documento</ion-title>
+            </ion-label>
+        </ion-item>
+      </ion-header>
+
+      <ion-content class="content-modal">
+        <div class="slides ion-margin-bottom">
+         
+        </div>
+        <div class="container">
+            <ion-grid>
+              <ion-row class="ion-align-items-center">
+                <ion-item style="margin-bottom: 15px;" lines="none">
+                  <ion-label position="floating">Nombre:</ion-label>
+                  <ion-input placeholder="Nombre del documento" [(ngModel)]="nombre_doc"></ion-input>
+                </ion-item>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                <ion-item style="margin-bottom: 15px;" lines="none">
+                  <ion-select placeholder="Seleccione el tipo de documento" [(ngModel)]="tipo_doc" (ionChange)="tipoChange($event)">
+                    <ion-select-option value="file">Archivo (pdf, imagen)</ion-select-option>
+                    <ion-select-option value="date">Fecha</ion-select-option>
+                    <ion-select-option value="text">Texto en general</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-row>
+              <ion-row *ngIf="mostrarCheckBox">
+                <ion-item style="margin-bottom: 15px;" lines="none">
+                  <ion-checkbox slot="start" checked="true" [(ngModel)]="verificarVigencia"></ion-checkbox>
+                  <ion-label>Verificar la vigencia de esta fecha.</ion-label>
+                </ion-item>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                  <ion-button class="btn-icon" (click)="registrarDocumento()">Aceptar</ion-button>
+              </ion-row>
+            </ion-grid>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

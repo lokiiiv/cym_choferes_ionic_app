@@ -1,0 +1,172 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="end">
+			
+		</ion-buttons>
+	</ion-toolbar>
+
+	<ion-item lines="none">
+		<ion-thumbnail>
+      <img alt="" src="{{ fotoUrl }}"/>
+    </ion-thumbnail>
+			<ion-label>
+        <h2>{{ nombre }}</h2>
+        <h2> {{ clave }}</h2>
+        <h2>Estatus: {{ estatus }} </h2>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content>
+
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-item lines="none" *ngIf="!requeComplete">
+      <ion-grid>
+        <h3>Requerimientos</h3>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <ion-grid>
+              <ion-item lines="none">
+                <ion-col>
+                  <ion-row>
+                    <h5>Video de inducción de seguridad</h5>
+                  </ion-row>
+                  <ion-row>
+                    <h6>Visualizar video de inducción de seguridad como operador de camión dentro de la planta.</h6>
+                  </ion-row>
+                  <ion-row>
+                    <ion-button class="btn-reque" id="btnVideo" *ngIf="isWatchVideo == 0" (click)="goToVideo()">Ver</ion-button>
+                  </ion-row>
+                  <ion-row>
+                    <a class="regStr" *ngIf="isWatchVideo == 1"><ion-icon name="checkmark-circle"></ion-icon>Visualización completa</a> 
+                  </ion-row>
+                </ion-col>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-col>
+                  <ion-row>
+                    <h5>Cuestionario de evaluación.</h5>
+                  </ion-row>
+                  <ion-row>
+                    <h6>Contestar un cuestionario para evaluar los conocimiento conforme a lo establecido en los videos.</h6>
+                  </ion-row>
+                  <ion-row>
+                    <ion-button class="btn-reque" id="btnQuiz" *ngIf="isAnswerQuiz == 0" (click)="goToQuiz()">Contestar</ion-button>
+                  </ion-row>
+                  <ion-row>
+                    <a class="regStr" *ngIf="isAnswerQuiz == 1"><ion-icon name="checkmark-circle"></ion-icon>Cuestionario realizado</a> 
+                  </ion-row>
+                </ion-col>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-col>
+                  <ion-row>
+                    <h5>Documentación</h5>
+                  </ion-row>
+                  <ion-row>
+                    <h6>Subir documentación necesaria antes de ingresar a la planta.</h6>
+                  </ion-row>
+                  <ion-row>
+                    <ion-button class="btn-reque" id="btnDocs" *ngIf="isUploadDocs == 0" (click)="goToDocs()">Subir</ion-button>
+                  </ion-row>
+                  <ion-row>
+                    <a class="regStr" *ngIf="isUploadDocs == 1"><ion-icon name="checkmark-circle"></ion-icon>Documentación lista</a> 
+                  </ion-row>
+                </ion-col>
+              </ion-item>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <div id="acciones" *ngIf="requeComplete && estatus != 'VETADO'">
+      <ion-item lines="none">
+        <ion-grid>
+          <h3>Registro de movimientos dentro de planta.</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="qr-code-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Proporcione el codigo QR en los diferentes puntos de planta para registrar sus movimientos durante su recorrido en planta.</h6>
+              </ion-row>
+              <ion-row>
+                <ion-button class="btn-main" type="button" expand="block" (click)="openQrModal()">Generar código</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-grid>
+          <h3>Descargar códigos QR</h3>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <ion-button color="light" fill="clear">
+                <ion-icon slot="icon-only" size="large" name="download"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="9">
+              <ion-row>
+                <h6>Puede descargar su código QR manualmente para imprimirlo si así lo desea.</h6>
+              </ion-row>
+              <ion-row [hidden]="true">
+                <ion-col>
+                  <div id="qr-code-in">
+                    <qrcode
+                      #qrCode
+                      [qrdata]="qrValue"
+                      [elementType]="'img'"
+                      [errorCorrectionLevel]="'M'"
+                      [width]="300">
+                    </qrcode>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row class="row-download">
+                <ion-button class="btn-main" type="button" expand="block" (click)="downloadCodes(qrCode)">Descargar códigos</ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="container-evaluacion">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon class="good" name="checkmark-circle" *ngIf="isAnswerQuiz == 1"></ion-icon>
+            <ion-icon class="bad" name="close-circle" *ngIf="isAnswerQuiz == 0"></ion-icon>
+            Certificación
+          </ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <h6 *ngIf="isAnswerQuiz == 1">Cuestionario realizado el {{ lastQuizDate }}, proxima realización el {{ proximoQuiz }}.</h6>
+          <h6 *ngIf="isAnswerQuiz == 1"> {{ diasRestantes }} días restantes.</h6>
+
+          <h6 *ngIf="isAnswerQuiz == 0">Es necesario que vuelva a realizar el cuestionario de evaluación.</h6>
+        </ion-card-content>
+        <div style="margin-left: 10px;" *ngIf="isAnswerQuiz == 0">
+          <ion-button class="btn-reque" size="small" [routerLink]="'/chofer-tabs/main/video'">Ver video</ion-button>
+          <ion-button class="btn-reque" size="small" [routerLink]="'/chofer-tabs/main/quiz'">Contestar cuestionario</ion-button>
+        </div>
+        
+      </ion-card>
+    </div>
+  </ion-toolbar>
+</ion-footer>

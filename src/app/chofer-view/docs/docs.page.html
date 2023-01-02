@@ -1,0 +1,226 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button routerLink="/chofer-tabs"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="document"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Subir documentación</h1>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content>
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+  <div class="container">
+
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12" size-sm="6" *ngFor="let c of elementosForm">
+                    <ion-item lines="none">
+                      <ion-grid>
+                        <ion-row class="ion-align-items-center">
+                          <ion-col>
+                            <ion-card-title class="ion-text-center"> {{ c.nombre }} </ion-card-title>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col>
+                            <div [ngSwitch]="c.tipo">
+
+                              <ion-row>
+                                <ion-col>
+                                  
+                                  <ion-button *ngSwitchCase="'file'" class="take" type="button" expand="block" fill="outline" (click)="takeDoc(c.metadata, $event)">Tomar foto</ion-button> 
+                                  <a class="regStr fotoLabel" *ngSwitchCase="'file'" style="display: none; color: green;">Foto capturada.</a> 
+                                             
+                                  <hr>
+                                  <ion-input *ngSwitchCase="'file'" class="fileChooser" type="file" accept=".pdf, .png, .jpeg" (change)="selectFileDoc($event, c.metadata)"></ion-input>
+                                
+
+                                  <input type="date" [formControlName]="c.metadata" *ngSwitchCase="'date'" [min]="minDate">
+
+                                  <ion-input *ngSwitchCase="'text'" [formControlName]="c.metadata" type="text" [placeholder]="c.nombre"></ion-input>
+
+                                </ion-col>
+                              </ion-row>
+
+                              <ion-row> 
+                                <ion-col>
+                                  <a class="regStr" *ngIf="c.valor" ><ion-icon name="checkmark-done"></ion-icon>Ya subió este documento o dato.</a> 
+                                </ion-col>
+                              </ion-row>
+                              <ion-row *ngSwitchCase="'date'">
+                                <ion-col>
+                                  <a class="regStr" *ngIf="verificarVigencia(c.valor)" style="color: #7B241C;"><ion-icon name="warning" style="color: #7B241C;"></ion-icon>Necesita actualizar este dato.</a> 
+                                </ion-col>
+                              </ion-row>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      <ion-row class="ion-align-items-start">
+        <ion-button class="upload" type="submit" expand="block" >Subir</ion-button>
+      </ion-row>
+    </form>
+
+    <!-- <ion-item lines="none">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12" size-sm="6">
+                  <ion-item>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col>
+                          <ion-card-title class="ion-text-center">INE</ion-card-title>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button class="take" type="button" expand="block" fill="outline" (click)="takeDoc('INE')">Tomar foto</ion-button>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-input type="file" accept=".pdf, .png, .jpeg" (change)="selectFileDoc('INE', $event)"></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row> 
+                            <ion-col>
+                              <a class="regStr" *ngIf="rutaINE"><ion-icon name="checkmark-done"></ion-icon>Documento capturado.</a> 
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12" size-sm="6">
+                  <ion-item>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col>
+                          <ion-card-title class="ion-text-center">Licencia</ion-card-title>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button class="take" type="button" expand="block" fill="outline" (click)="takeDoc('LICENCIA')">Tomar foto</ion-button>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-input type="file" accept=".pdf, .png, .jpeg" (change)="selectFileDoc('LICENCIA', $event)"></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row> 
+                            <ion-col>
+                              <a class="regStr" *ngIf="rutaLicencia"><ion-icon name="checkmark-done"></ion-icon>Documento capturado.</a> 
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-justify-content-center ion-align-items-start">
+                <ion-col size="12" size-sm="6">
+                  <ion-item>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col>
+                          <ion-card-title class="ion-text-center">Póliza de seguro vehícular</ion-card-title>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button class="take" type="button" expand="block" fill="outline" (click)="takeDoc('POLIZA')">Tomar foto</ion-button>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-input type="file" accept=".pdf, .png, .jpeg" (change)="selectFileDoc('POLIZA', $event)"></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row> 
+                            <ion-col>
+                              <a class="regStr" *ngIf="rutaPoliza"><ion-icon name="checkmark-done"></ion-icon>Documento capturado.</a> 
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12" size-sm="6">
+
+                  <ion-item>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col>
+                          <ion-card-title class="ion-text-center">Esquema de vacunación</ion-card-title>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button class="take" type="button" expand="block" fill="outline" (click)="takeDoc('VACU')">Tomar foto</ion-button>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-input type="file" accept=".pdf, .png, .jpeg" (change)="selectFileDoc('VACU', $event)"></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row> 
+                            <ion-col>
+                              <a class="regStr" *ngIf="rutaVacu"><ion-icon name="checkmark-done"></ion-icon>Documento capturado.</a> 
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-start">
+                <ion-button class="upload" type="button" expand="block" (click)="uploadDocs()">Subir</ion-button>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item> -->
+  </div>
+  
+</ion-content>

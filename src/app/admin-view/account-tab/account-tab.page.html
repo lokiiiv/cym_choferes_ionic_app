@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border header-main">
+	<ion-toolbar>
+		<ion-buttons slot="end">
+			
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="person-circle"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Cuenta</h1>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content class="main">
+
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-card-title> {{ nombre }} </ion-card-title>
+            <ion-item lines="none">
+              <div class="img-chofer">
+                <ion-thumbnail>
+                  <img alt="" src="{{ fotoUrl }}"/>
+                </ion-thumbnail>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <div>
+                <ion-text>
+                  <h5> Rol: {{ rol }} </h5>
+                </ion-text>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <div>
+                <ion-text>
+                  <h5> Clave: {{ clave }} </h5>
+                </ion-text>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-grid>
+                <ion-row class="img-chofer">
+                  <ion-button class="btn-main" (click)="logout()">Cerrar sesión</ion-button>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+
+</ion-content>

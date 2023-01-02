@@ -1,0 +1,124 @@
+<ion-header class="ion-no-border header-main">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button routerLink="/admin-tabs"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="person-add"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Agregar usuarios</h1>
+			</ion-label>
+      
+	</ion-item>
+  <ion-searchbar placeholder="Buscar usuario" animated (ionChange)="searchUsuario($event)"></ion-searchbar>
+  
+</ion-header>
+
+<ion-content class="main">
+
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-item *ngFor="let user of searchedUsuario" lines="none">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2">
+            <ion-thumbnail class="thumb-chofer">
+              <img alt="" src="{{ user.foto }}"/>
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col size="8">
+            <ion-row>
+              <ion-text>
+                <h6>Clave: {{ user.clave }}</h6>
+                <h6>Nombre: {{ user.nombreCompleto }}</h6>
+                <h6>Rol: {{ user.rol }}</h6>
+              </ion-text>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2">
+            <ion-row>
+              <ion-button class="btn-icon" (click)="obtenerUsuario(user.idUser)"><ion-icon name="create"></ion-icon></ion-button>
+              <ion-button class="btn-icon" (click)="eliminarUsuario(user.idUser, user.nombreCompleto)"><ion-icon name="trash"></ion-icon></ion-button>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </div>
+
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header class="header-modal" no-border>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      
+        <ion-item lines="none">
+            <div class="main">
+              <ion-icon name="information-circle"></ion-icon>
+            </div>
+            <ion-label>
+              <ion-title *ngIf="!editing">Agregar usuario</ion-title>
+              <ion-title *ngIf="editing">Editar usuario</ion-title>
+            </ion-label>
+        </ion-item>
+      </ion-header>
+
+      <ion-content class="content-modal">
+        <div class="slides ion-margin-bottom">
+         
+        </div>
+        <div class="container">
+          <ion-item lines="none">
+            <form [formGroup]="myForm" (ngSubmit)="guardarEditarUsuario()" style="width: 100%;">
+              <ion-grid>
+                <ion-row class="ion-align-items-center">
+                  <ion-item style="margin-bottom: 15px;">
+                    <ion-label position="floating">Nombre completo:</ion-label>
+                    <ion-input placeholder="Nombre completo" type="text" formControlName="nombreCompleto"></ion-input>
+                  </ion-item>
+                  <ion-label color="danger" *ngIf="myForm.get('nombreCompleto')?.touched && myForm.get('nombreCompleto').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el nombre del usuario.</ion-label>
+                </ion-row>
+                <ion-row class="ion-align-items-center" *ngIf="!editing">
+                  <ion-item style="margin-bottom: 15px;">
+                    <ion-select placeholder="Seleccione el rol" formControlName="rol">
+                      <ion-select-option value="admin">Administrador</ion-select-option>
+                      <ion-select-option value="seguridad">Seguridad</ion-select-option>
+                      <ion-select-option value="logistica">Logística</ion-select-option>
+                      <ion-select-option value="vigilancia">Vigilancia</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-label color="danger" *ngIf="myForm.get('rol')?.touched && myForm.get('rol').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el rol del usuario.</ion-label>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                  <ion-button type="submit" class="btn-icon" [disabled]="myForm.invalid">Aceptar</ion-button>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-item>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  
+</ion-content>
+
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="warning" (click)="nuevoUsuario()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

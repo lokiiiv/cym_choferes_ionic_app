@@ -1,0 +1,48 @@
+
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="scan"></ion-icon>
+      </div>
+			<ion-label>
+        <ion-title>Código QR</ion-title>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content>
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+  <div class="container">
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <ion-text class="ion-text-center">
+              <p>Proporcione el siguiente código QR en los diferentes puntos durante el recorrido dentro de planta.</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col class="ion-text-center">
+            <div class="div-qr">
+              <qrcode
+                [qrdata]="qrValue"
+                [elementType]="'img'"
+                [errorCorrectionLevel]="'M'"
+                [width]="300">
+              </qrcode>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+</ion-content>

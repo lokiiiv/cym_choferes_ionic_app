@@ -1,0 +1,115 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <div class="container-login">
+          <ion-card>
+            <form [formGroup]="form">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-text>
+                      <h3>Registrarse</h3>
+                      <p>Ingresa todos los datos para registrarse.</p>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label position="floating">Nombre completo</ion-label>
+                                <ion-input type="text" formControlName="nombre"></ion-input>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('nombre').touched && form.get('nombre').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el nombre completo.</ion-label>
+                            <br>
+                            <ion-item>
+                              <ion-row>
+                                <ion-col>
+                                  <ion-text>
+                                    <p>Fecha de nacimiento</p>
+                                  </ion-text>
+                                </ion-col>
+                              </ion-row>
+                            </ion-item>
+                            <ion-item>
+                              <ion-datetime presentation="date" formControlName="fechaNaci"></ion-datetime>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('fechaNaci').touched && form.get('fechaNaci').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere fecha de nacimiento</ion-label>
+                            <br>
+
+                            <ion-item>
+                              <ion-select placeholder="Seleccione el género" formControlName="genero">
+                                <ion-select-option value="Hombre">Hombre</ion-select-option>
+                                <ion-select-option value="Mujer">Mujer</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('genero').touched && form.get('genero').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el género.</ion-label>
+                            <br>
+
+                            <br><br>
+                            <ion-item>
+                              <ion-select placeholder="Seleccione el estado" formControlName="estado">
+                                <ion-select-option value="Aguascalientes">Aguascalientes</ion-select-option>
+                                <ion-select-option value="Baja California">Baja California</ion-select-option>
+                                <ion-select-option value="Baja California Sur">Baja California Sur</ion-select-option>
+                                <ion-select-option value="Campeche">Campeche</ion-select-option>
+                                <ion-select-option value="Chiapas">Chiapas</ion-select-option>
+                                <ion-select-option value="Chihuahua">Chihuahua</ion-select-option>
+                                <ion-select-option value="CDMX">Ciudad de México</ion-select-option>
+                                <ion-select-option value="Coahuila">Coahuila</ion-select-option>
+                                <ion-select-option value="Colima">Colima</ion-select-option>
+                                <ion-select-option value="Durango">Durango</ion-select-option>
+                                <ion-select-option value="Estado de México">Estado de México</ion-select-option>
+                                <ion-select-option value="Guanajuato">Guanajuato</ion-select-option>
+                                <ion-select-option value="Guerrero">Guerrero</ion-select-option>
+                                <ion-select-option value="Hidalgo">Hidalgo</ion-select-option>
+                                <ion-select-option value="Jalisco">Jalisco</ion-select-option>
+                                <ion-select-option value="Michoacán">Michoacán</ion-select-option>
+                                <ion-select-option value="Morelos">Morelos</ion-select-option>
+                                <ion-select-option value="Nayarit">Nayarit</ion-select-option>
+                                <ion-select-option value="Nuevo León">Nuevo León</ion-select-option>
+                                <ion-select-option value="Oaxaca">Oaxaca</ion-select-option>
+                                <ion-select-option value="Puebla">Puebla</ion-select-option>
+                                <ion-select-option value="Querétaro">Querétaro</ion-select-option>
+                                <ion-select-option value="Quintana Roo">Quintana Roo</ion-select-option>
+                                <ion-select-option value="San Luis Potosí">San Luis Potosí</ion-select-option>
+                                <ion-select-option value="Sinaloa">Sinaloa</ion-select-option>
+                                <ion-select-option value="Sonora">Sonora</ion-select-option>
+                                <ion-select-option value="Tabasco">Tabasco</ion-select-option>
+                                <ion-select-option value="Tamaulipas">Tamaulipas</ion-select-option>
+                                <ion-select-option value="Tlaxcala">Tlaxcala</ion-select-option>
+                                <ion-select-option value="Veracruz">Veracruz</ion-select-option>
+                                <ion-select-option value="Yucatán">Yucatán</ion-select-option>
+                                <ion-select-option value="Zacatecas">Zacatecas</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('estado').touched && form.get('estado').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el estado.</ion-label>
+                            <br>
+                            <ion-item>
+                              <ion-label position="floating">Telefono celular</ion-label>
+                              <ion-input type="tel" formControlName="telefono"></ion-input>
+                            </ion-item>
+                            <ion-label color="danger" *ngIf="form.get('telefono').touched && form.get('telefono').errors?.required" style="margin-left: 20px; margin-bottom: 20px;">Se requiere el télefono de la empresa transportista</ion-label>
+                            <br>
+                            <ion-item>
+                              <ion-button class="btnFoto" expand="block" fill="outline" (click)="takePhoto()">Tomar foto de perfil</ion-button>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button class="ion-button-primary" type="submit" fill="solid" (click)="register()">Registrarse</ion-button>
+                    </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+  

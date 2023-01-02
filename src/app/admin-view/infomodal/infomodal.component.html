@@ -1,0 +1,119 @@
+<ion-header class="header-modal" no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="information-circle"></ion-icon>
+      </div>
+      <ion-label>
+        <ion-title>Información</ion-title>
+      </ion-label>
+  </ion-item>
+</ion-header>
+
+
+<ion-content class="content-modal">
+
+  <div class="slides ion-margin-bottom">
+  </div>
+
+  <div class="container">
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-card-title> {{ nombreCompleto }} </ion-card-title>
+            <ion-item lines="none">
+              <div class="img-chofer">
+                <ion-thumbnail>
+                  <img alt="" src="{{ fotoUrl }}"/>
+                </ion-thumbnail>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="success">
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <div class="center-items">
+                  <ion-icon name="checkmark-done-circle" class="correct-icon"></ion-icon>
+                </div>
+              </ion-row>
+              <ion-row>
+                <div class="center-items">
+                  <p> {{ message }} </p>
+                </div>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-row>
+        <ion-row *ngIf="!success">
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <div class="center-items">
+                  <ion-icon name="close-circle" class="wrong-icon"></ion-icon>
+                </div>
+              </ion-row>
+              <ion-row>
+                <div class="center-items">
+                  <p> {{ message }} </p>
+                </div>
+              </ion-row>
+
+              <ion-row *ngIf="permitir != undefined">
+                <div class="center-items">
+                  <ion-button class="btn-main" (click)="confirmPermitir()">Registrar aún así</ion-button>
+                </div>
+              </ion-row>
+              <ion-row *ngIf="olvido != undefined">
+                <div class="center-items">
+                  <ion-button class="btn-main" (click)="confirmOlvidar()">Registrar aún así</ion-button>
+                </div>
+              </ion-row>
+
+            </ion-grid>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <div class="center-items">
+                  <h4 [ngStyle]="{'color': status == 'ACTIVO' ? '#117A65' : (status == 'VETADO') ? '#B03A2E' : (status == 'INCOMPLETO') ? '#F1C40F' : '#17202A'}">Estatus: {{ status }}</h4>
+                </div>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <div class="center-items">
+                  <p>Empresa: {{ empresaTransportista }} </p>
+                </div>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <div class="center-items">
+                  <p>Estado: {{ estadoProcedencia }} </p>
+                </div>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-row> -->
+      </ion-grid>
+    </ion-item>
+  </div>
+</ion-content>

@@ -1,0 +1,219 @@
+<ion-header class="ion-no-border header-main">
+	<ion-toolbar>
+		<ion-buttons slot="end">
+			
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="person-circle"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Cuenta</h1>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content class="main">
+
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-card-title> {{ nombre }} </ion-card-title>
+            <ion-item lines="none">
+              <div class="img-chofer">
+                <ion-thumbnail>
+                  <img alt="" src="{{ fotoUrl }}"/>
+                </ion-thumbnail>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <div>
+                <ion-text>
+                  <h5> Clave: {{ clave }} </h5>
+                </ion-text>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <div>
+                <ion-text>
+                  <h5> Estatus: {{ estatus }} </h5>
+                </ion-text>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                       <a class="regStr" (click)="detailChofer()">Ver información completa</a>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                       <a class="regStr" [routerLink]="['/chofer-tabs/main/video']">Video de inducción</a>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                       <a class="regStr" [routerLink]="['/chofer-tabs/main/docs']">Documentación</a>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-grid>
+                <ion-row class="img-chofer">
+                  <ion-button class="btn-main" (click)="logout()">Cerrar sesión</ion-button>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header class="header-modal" no-border>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      
+        <ion-item lines="none">
+            <div class="main">
+              <ion-icon name="document"></ion-icon>
+            </div>
+            <ion-label>
+              <ion-title>Información</ion-title>
+            </ion-label>
+        </ion-item>
+      </ion-header>
+
+      
+      <ion-content class="content-modal">
+
+        <div class="slides ion-margin-bottom">
+        </div>
+
+        <div class="container">
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-card-title> {{ nombre }} </ion-card-title>
+                  <ion-item lines="none">
+                    <div class="img-chofer">
+                      <ion-thumbnail>
+                        <img alt="" src="{{ foto }}"/>
+                      </ion-thumbnail>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <h5> Estatus: {{ estatus }} </h5>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Clave: {{ clave }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Rol: {{ rol }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text >
+                        <p> Fecha de nacimiento: {{ fechaNacimiento }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Edad: {{ edad }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Fecha de registro: {{ fechaRegistro }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Género: {{ genero }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Estado de procedencia: {{ estado }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Teléfono: {{ telefono }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Completo el video: {{ verVideo }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Realizó cuestionario: {{ contestarQuiz }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                  <ion-item lines="none">
+                    <div>
+                      <ion-text>
+                        <p> Documentación completa: {{ subirDocs }} </p>
+                      </ion-text>
+                    </div>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+

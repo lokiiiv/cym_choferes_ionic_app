@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button routerLink="/chofer-tabs"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+  <ion-item lines="none">
+      <div class="main">
+        <ion-icon name="help"></ion-icon>
+      </div>
+			<ion-label>
+        <h1>Cuestionario</h1>
+			</ion-label>
+	</ion-item>
+</ion-header>
+
+<ion-content>
+  <div class="slides ion-margin-bottom">
+   
+  </div>
+
+  <div class="container">
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <section>
+                  <div class="que_text">
+                    <span> {{ preguntaActual }} </span>
+                  </div>
+                  <div class="option_list">
+                      <div class="option" *ngFor="let item of answers" (click)="optionSelected(item)"
+                        [ngClass]="{'correct' : idAnswerCorrect && item.idAnswer === idAnswerCorrect, 
+                                    'incorrect' : idAnswerCorrect && item.idAnswer !== idAnswerCorrect && item.idAnswer == idUserAnswer,
+                                    'disabled' : disabled}">
+                        <span>{{ item.contenido }}</span>
+                        <div class="icon cross" *ngIf="idAnswerCorrect && item.idAnswer !== idAnswerCorrect && item.idAnswer == idUserAnswer"><ion-icon name="close-outline"></ion-icon></div>
+                        <div class="icon tick" *ngIf="idAnswerCorrect && item.idAnswer === idAnswerCorrect"><ion-icon name="checkmark-outline"></ion-icon></div>
+                      </div>
+                      <!-- <div class="option">
+                          <span>10</span>
+                          <div class="icon cross"><ion-icon name="close-outline"></ion-icon></div>
+                      </div>
+                      <div class="option">
+                          <span>7</span>
+                          <div class="icon tick"><ion-icon name="checkmark-outline"></ion-icon></div>
+                      </div>
+                      <div class="option">
+                          <span>9</span>
+                          <div class="icon cross"><ion-icon name="close-outline"></ion-icon></div>
+                      </div>
+                      <div class="option">
+                          <span>5</span>
+                          <div class="icon cross"><ion-icon name="close-outline"></ion-icon></div>
+                      </div> -->
+                  </div>
+                </section>
+                <footer>
+                  <div class="total_que">
+                     <span> {{ que_count + 1 }} de {{ totalPreguntas }} preguntas</span>
+                  </div>
+                  <button class="next_btn" *ngIf="questionList" (click)="nextQuestion()">Siguiente</button>
+                </footer>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+</ion-content>
