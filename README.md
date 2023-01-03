@@ -18,7 +18,7 @@ Aspectos importantes: antes de ejecutar la aplicación, hay que tomar en cuenta 
 Ejecutar la aplicación:
 - En la terminal, estando en la carpeta del proyecto, ejecutar el comando "ionic serve" (sin comillas), esto comenzara la ejecución de la aplicación en el navegador, puede usar el navegador para cambiar el tamaño de la pagina a uno de un dispositivo movil o ver que peticiones hace la app al servidor.
 - Puede ejecutar la aplicación en un dispositivo Android usando en comando "ionic capacitor run android", esto mostrara una lista de emuladores o dispositivos fisicos conectados a la PC (activar depuración usb en el modo desarrollador si se usa un movil fisico). Más adelante se muestra material que indica como ejecutar la app y generar una APK con ayuda de Android Studio.
-- La ejecución para iOS no esta probada al 100% esto debido a que algunos plugin o libreríad requieren configuraciones especificas para iOS, además de que se necesita XCode para hacer esto y una MAC para probar las aplicaciones en dispositivos iOS.
+- La ejecución para iOS no esta probada al 100% esto debido a que algunos plugin o librerías requieren configuraciones especificas para iOS, además de que se necesita XCode para hacer esto y una MAC para probar las aplicaciones en dispositivos iOS.
 
 En el siguiente video se muestra un apoyo para entender como ejecutar una app Ionic en Android Studio: [https://www.youtube.com/watch?v=EdZ0hQtrfEU](https://www.youtube.com/watch?v=JuYZ2xdHw3o)
 
