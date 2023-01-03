@@ -21,7 +21,7 @@ Ejecutar la aplicación:
 - Puede ejecutar la aplicación en un dispositivo Android usando en comando "ionic capacitor run android", esto mostrara una lista de emuladores o dispositivos fisicos conectados a la PC (activar depuración usb en el modo desarrollador si se usa un movil fisico). Más adelante se muestra material que indica como ejecutar la app y generar una APK con ayuda de Android Studio.
 - La ejecución para iOS no esta probada al 100% esto debido a que algunos plugin o librerías requieren configuraciones especificas para iOS, además de que se necesita XCode para hacer esto y una MAC para probar las aplicaciones en dispositivos iOS.
 
-Si al ejecutar ionic serve muestra errores, eliminar la carpeta node_modules, ejecutar el comando "npm cache clean --force" y finalmente ejecutar "npm install".
+Si al ejecutar ionic serve muestra errores, eliminar la carpeta node_modules, ejecutar el comando "npm cache clean --force" y finalmente ejecutar "npm install" las veces que sean necesarias.
 
 En el siguiente video se muestra un apoyo para entender como ejecutar una app Ionic en Android Studio: [https://www.youtube.com/watch?v=EdZ0hQtrfEU](https://www.youtube.com/watch?v=JuYZ2xdHw3o)
 
