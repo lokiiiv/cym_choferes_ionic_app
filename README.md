@@ -13,12 +13,15 @@ Procedimiento
 - Estando en la terminal, dirigirse a la carpeta del proyecto y ejecutar el comando "npm cache clean --force" (sin las comillas).
 - Estando en la terminal, dirigirse a la carpeta del proyecto y ejecutar el comando "npm install" (sin las comillas), esto empezar a descargar todas las dependencias o plugins faltantes al proyecto (En este punto asegurese de tener buena conexión a internet, si falla intente ejecutar el comando nuevamente).
 
-Aspectos importantes: antes de ejecutar la aplicación, hay que tomar en cuenta que se conecta a la API de Laravel, por lo que es importante tener la aplicación Laravel ejecutandose y conocer la dirección IP del servidor, ya que es necesario incluir esa dirección IP en el archivo de enviroment de Ionic el cual se encuentra en la carpeta src/enviroments/enviroment.ts, en ese archivo hay una variable llamada "api_url", cambiar la dirección IP por la direccion correcta, ejemplo: 'http://192.168.0.9:8000/api'. Esto se hace con la finalidad de definir la dirección principal de la API Laravel a la cual Ionic debe conectarse, ya que los servicios de Angular toman esta variable para hacer peticiones a la API.
+Aspectos importantes:
+- Antes de ejecutar la aplicación, hay que tomar en cuenta que se conecta a la API de Laravel, por lo que es importante tener la aplicación Laravel ejecutandose y conocer la dirección IP del servidor, ya que es necesario incluir esa dirección IP en el archivo de enviroment de Ionic el cual se encuentra en la carpeta src/enviroments/enviroment.ts, en ese archivo hay una variable llamada "api_url", cambiar la dirección IP por la direccion correcta, ejemplo: 'http://192.168.0.9:8000/api'. Esto se hace con la finalidad de definir la dirección principal de la API Laravel a la cual Ionic debe conectarse, ya que los servicios de Angular toman esta variable para hacer peticiones a la API.
 
 Ejecutar la aplicación:
 - En la terminal, estando en la carpeta del proyecto, ejecutar el comando "ionic serve" (sin comillas), esto comenzara la ejecución de la aplicación en el navegador, puede usar el navegador para cambiar el tamaño de la pagina a uno de un dispositivo movil o ver que peticiones hace la app al servidor.
 - Puede ejecutar la aplicación en un dispositivo Android usando en comando "ionic capacitor run android", esto mostrara una lista de emuladores o dispositivos fisicos conectados a la PC (activar depuración usb en el modo desarrollador si se usa un movil fisico). Más adelante se muestra material que indica como ejecutar la app y generar una APK con ayuda de Android Studio.
 - La ejecución para iOS no esta probada al 100% esto debido a que algunos plugin o librerías requieren configuraciones especificas para iOS, además de que se necesita XCode para hacer esto y una MAC para probar las aplicaciones en dispositivos iOS.
+
+Si al ejecutar ionic serve muestra errores, eliminar la carpeta node_modules, ejecutar el comando "npm cache clean --force" y finalmente ejecutar "npm install".
 
 En el siguiente video se muestra un apoyo para entender como ejecutar una app Ionic en Android Studio: [https://www.youtube.com/watch?v=EdZ0hQtrfEU](https://www.youtube.com/watch?v=JuYZ2xdHw3o)
 
