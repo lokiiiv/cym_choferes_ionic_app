@@ -9,7 +9,7 @@ Para ejecutar y probar la aplicación de manera local, es necesario contar con l
 Procedimiento
 - Abrir la terminal y verificar si Node js esta instalado usando el comenado: node --version, si devulve la respuesta, proceder a instalar el CLI de Ionic con el comando: npm i -g @ionic/cli. Esto permitira crear proyectos de Ionic.
 - Abrir la terminal y dirigirse a la carpeta de su preferencia, puede ser el escritorio o documentos, etc. En esta carpeta de clonara el proyecto desde el repositorio de GitHub usando el comando: git clone https://github.com/lokiiiv/cym_choferes_ionic_app.git, de descargara el proyecto en la carpeta correspondiente.
-- Ubicar la carpeta donde se descargo el proyecto y eliminar la carpeta llamada "node_modules".
+- Ubicar la carpeta donde se descargo el proyecto y eliminar la carpeta llamada "node_modules" si es que se encuentra.
 - Estando en la terminal, dirigirse a la carpeta del proyecto y ejecutar el comando "npm cache clean --force" (sin las comillas).
 - Estando en la terminal, dirigirse a la carpeta del proyecto y ejecutar el comando "npm install" (sin las comillas), esto empezar a descargar todas las dependencias o plugins faltantes al proyecto (En este punto asegurese de tener buena conexión a internet, si falla intente ejecutar el comando nuevamente).
 
