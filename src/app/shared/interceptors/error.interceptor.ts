@@ -19,6 +19,7 @@ export class ErrorIntercept implements HttpInterceptor {
                        //Errores del lado del servidor
                          //Omitir el error 401 debido ya que el jwtInterceptor ya lo maneja
                          if(error.status === 401) {
+                            console.log('Error interceptor, 401 error, omitir, jwtinterceptor se encargara');
                              return of(error);
                          } else {
                              console.log('Error del servidor', error.status);

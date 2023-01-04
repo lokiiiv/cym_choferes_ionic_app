@@ -64,7 +64,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     //Si el token es invalido, tratar de cargar uno nuevo
     private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-        
+        console.log('JwtInterceptor, manejando error 401 para generar nuevo token');
         //Verificar si otra llamada esta usando la logica del refresco
         if(!this.isRefreshingToken) {
             //Poner en nulo para que otras llamadas puedan esperar
