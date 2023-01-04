@@ -28,12 +28,7 @@
     <ion-item *ngFor="let user of searchedUsuario" lines="none">
       <ion-grid>
         <ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-no-padding">
-            <ion-thumbnail class="thumb-chofer">
-              <img alt="" src="{{ user.foto }}"/>
-            </ion-thumbnail>
-          </ion-col>
-          <ion-col size="8" class="ion-no-padding">
+          <ion-col size="10" class="ion-no-padding">
             <ion-row>
               <ion-text>
                 <h6>Clave: {{ user.clave }}</h6>
