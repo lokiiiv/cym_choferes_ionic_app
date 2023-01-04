@@ -62,6 +62,10 @@ ion-content.main {
             --border-radius: 14px;
             color: black;
             font-weight: 600;
+            --padding-end: 0px;
+            --inner-padding-end: 0px;
+            --padding-start: 6px;
+            --iner-padding-start: 6px;
 
 
             ion-button.btn-main {
@@ -69,7 +73,7 @@ ion-content.main {
             }
 
             .thumb-chofer {
-                --size: 50px;
+                --size: 35px;
                 --border-radius: 14px;
             }
         }

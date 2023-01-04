@@ -33,12 +33,12 @@
     <ion-item *ngFor="let user of searchedChofer" lines="none">
       <ion-grid>
         <ion-row class="ion-align-items-center">
-          <ion-col size="3">
+          <ion-col size="2" class="ion-no-padding">
             <ion-thumbnail class="thumb-chofer">
               <img alt="" src="{{ user.foto }}"/>
             </ion-thumbnail>
           </ion-col>
-          <ion-col size="7">
+          <ion-col size="8" class="ion-no-padding">
             <ion-row>
               <ion-text>
                 <h6>Nombre: {{ user.nombreCompleto }}</h6>
@@ -46,7 +46,7 @@
               </ion-text>
             </ion-row>
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="2" class="ion-no-padding">
             <ion-row>
               <ion-button class="btn-icon" (click)="cambiarEstatus(user.idUser)" *appHasRole="['admin', 'logistica', 'seguridad']"><ion-icon name="eye-off"></ion-icon></ion-button>
               <ion-button class="btn-icon" [routerLink]="'/admin-tabs/main/choferes-lista/detail/' + user.idUser"><ion-icon name="reader"></ion-icon></ion-button>
