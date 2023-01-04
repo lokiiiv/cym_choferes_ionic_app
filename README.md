@@ -23,6 +23,8 @@ Ejecutar la aplicación:
 
 Si al ejecutar ionic serve muestra errores, eliminar la carpeta node_modules, ejecutar el comando "npm cache clean --force" y finalmente ejecutar "npm install" las veces que sean necesarias.
 
+Cuando se ejecuta el comando "ionic serve", se genera una carpeta llamada www, la cual contiene todos los archivos para que un navegador pueda entender la aplicación como si fuera una página web, por lo que estos archivos pueden subirse a un hosting o servidor virtual privado para hacer funcionar la aplicación como si fuera una página web, hay que tomar en cuenta que algunas funciones como el escaneo de QR solo funcionan de forma nativa en Android o iOS no en la web.
+
 En el siguiente video se muestra un apoyo para entender como ejecutar una app Ionic en Android Studio: [https://www.youtube.com/watch?v=EdZ0hQtrfEU](https://www.youtube.com/watch?v=JuYZ2xdHw3o)
 
 Material de apoyo para entender Ionic y Angular un poco (me ayudo mucho xd): https://www.youtube.com/watch?v=i-oYrcNtc2s, https://www.youtube.com/watch?v=akCCJrG9-Dk&t=2176s, https://www.youtube.com/watch?v=bJ_DALcR1Ts, https://youtube.com/playlist?list=PLsngLoGbAagFEG-jwlpPhGsLzMSQ0tadP.
