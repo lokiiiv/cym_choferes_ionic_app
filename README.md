@@ -18,7 +18,7 @@ Aspectos importantes:
 
 Ejecutar la aplicación:
 - En la terminal, estando en la carpeta del proyecto, ejecutar el comando "ionic serve" (sin comillas), esto comenzara la ejecución de la aplicación en el navegador, puede usar el navegador para cambiar el tamaño de la pagina a uno de un dispositivo movil o ver que peticiones hace la app al servidor.
-- Puede ejecutar la aplicación en un dispositivo Android usando en comando "ionic capacitor run android", esto mostrara una lista de emuladores o dispositivos fisicos conectados a la PC (activar depuración usb en el modo desarrollador si se usa un movil fisico). Más adelante se muestra material que indica como ejecutar la app y generar una APK con ayuda de Android Studio.
+- Puede ejecutar la aplicación en un dispositivo Android usando en comando "npx cap open android", esto abrira Android Studio y comenzara a compilar el proyecto, puede elegir ejecutar la aplicación en un emulador creado desde android studio o bien o dispositivo fisico conectado a la PC (activar modo de desarrollador y habilitar depuracion usb). Para más información y ayuda: https://ionicframework.com/docs/angular/your-first-app/deploying-mobile, https://ionicframework.com/docs/developing/android, https://www.youtube.com/watch?v=JuYZ2xdHw3o
 - La ejecución para iOS no esta probada al 100% esto debido a que algunos plugin o librerías requieren configuraciones especificas para iOS, además de que se necesita XCode para hacer esto y una MAC para probar las aplicaciones en dispositivos iOS.
 
 Si al ejecutar ionic serve muestra errores, eliminar la carpeta node_modules, ejecutar el comando "npm cache clean --force" y finalmente ejecutar "npm install" las veces que sean necesarias.
